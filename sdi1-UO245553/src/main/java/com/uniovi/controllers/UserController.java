@@ -24,13 +24,13 @@ public class UserController {
 
 	@Autowired
 	private SignUpFormValidator signUpFormValidator;
-	
+
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signUp(Model model) {
 		model.addAttribute("user", new User());
 		return "signup";
 	}
-	
+
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String setUser(@Validated User user, BindingResult result, Model model) {
 		signUpFormValidator.validate(user, result);
@@ -39,6 +39,11 @@ public class UserController {
 		}
 		userService.addUser(user);
 		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
-		return "index";
+		return "redirect:";
+	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(Model model) {
+		return "login";
 	}
 }
