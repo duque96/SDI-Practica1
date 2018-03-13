@@ -6,6 +6,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +45,11 @@ public class UserService {
 		userRepository.delete(id);
 	}
 
-	public Object getUserByEmail(String email) {
+	public User getUserByEmail(String email) {
 		return userRepository.findByEmail(email);
+	}
+	
+	public Page<User> getUsersWithoutId(Long id, Pageable pageable) {
+		return userRepository.getUsersWithoutId(id, pageable);
 	}
 }
