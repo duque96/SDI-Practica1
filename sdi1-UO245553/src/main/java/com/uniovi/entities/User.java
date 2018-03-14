@@ -1,10 +1,16 @@
 package com.uniovi.entities;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+
+import org.yaml.snakeyaml.error.Mark;
 
 @Entity
 public class User {
@@ -16,6 +22,9 @@ public class User {
 	@Column(unique = true)
 	private String email;
 	private String password;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<Relationship> relationships;
 
 	@Transient // No se almacena en la base de datos
 	private String passwordConfirm;

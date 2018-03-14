@@ -7,18 +7,28 @@
 	<div class="container">
 		<h2 th:text="#{users.title}"></h2>
 		<p th:text=#{users.subtitle}></p>
+		<form class="navbar-form" action="/users/list">
+			<div class="form-group">
+				<input name="searchText" type="text" class="form-control" size="50"
+					placeholder="Buscar por email o nombre del usuario" />
+			</div>
+			<button type="submit" class="btn btn-default">Buscar</button>
+		</form>
 		<div class="table-responsive">
 			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th th:text="#{users.list.name}">Nombre</th>
 						<th th:text="#{users.list.email}">Email</th>
+						<th class="col-md-2"></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="user : ${usersList}">
 						<td th:text="${user.name}"></td>
 						<td th:text="${user.email}"></td>
+						<td><a th:href="${'/addFriend/' + user.id}"
+							th:text="#{users.addFriend}"></a></td>
 					</tr>
 				</tbody>
 			</table>

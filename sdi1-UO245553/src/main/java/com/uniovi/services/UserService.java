@@ -48,8 +48,12 @@ public class UserService {
 	public User getUserByEmail(String email) {
 		return userRepository.findByEmail(email);
 	}
-	
+
 	public Page<User> getUsersWithoutId(Long id, Pageable pageable) {
 		return userRepository.getUsersWithoutId(id, pageable);
+	}
+
+	public Page<User> searchUsersByEmailAndName(Pageable pageable, String searchText, Long id) {
+		return userRepository.searchUsersByEmailAndName(pageable, searchText, id);
 	}
 }
