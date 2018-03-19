@@ -11,36 +11,38 @@
 				<label class="control-label col-sm-2" for="name"
 					th:text="#{signup.name}">Nombre:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="name"
-						th:placeholder="#{signup.name.example}" required="true" /> <span
-						class="text-danger" th:if="${#fields.hasErrors('name')}"
-						th:errors="*{name}" />
+					<input type="text" id="RegisterName" class="form-control"
+						name="name" th:placeholder="#{signup.name.example}"
+						required="true" /> <span class="text-danger"
+						th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="email"
 					th:text="#{signup.email}">Email:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="email"
-						th:placeholder="#{signup.email.example}" required="true" /> <span
-						class="text-danger" th:if="${#fields.hasErrors('email')}"
-						th:errors="*{email}" />
+					<input type="text" id="RegisterEmail" class="form-control"
+						name="email" th:placeholder="#{signup.email.example}"
+						required="true" /> <span class="text-danger"
+						th:if="${#fields.hasErrors('email')}" th:errors="*{email}" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="password"
 					th:text="#{signup.password}">Password:</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control" name="password"
-						th:placeholder="#{signup.password.message}" /> <span class="text-danger"
-						th:if="${#fields.hasErrors('password')}" th:errors="*{password}" />
+					<input type="password" id="RegisterPassword" class="form-control"
+						name="password" th:placeholder="#{signup.password.message}" /> <span
+						class="text-danger" th:if="${#fields.hasErrors('password')}"
+						th:errors="*{password}" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="passwordConfirm"
 					th:text="#{signup.confirmpassword}">Repita el Password:</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control" name="passwordConfirm"
+					<input type="password" id="RegisterPasswordConfirm"
+						class="form-control" name="passwordConfirm"
 						th:placeholder="#{signup.confirmpassword.message}" /> <span
 						class="text-danger"
 						th:if="${#fields.hasErrors('passwordConfirm')}"
@@ -49,7 +51,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-primary"
+					<button type="submit" id="RegisterSubmit" class="btn btn-primary"
 						th:text="#{signup.send}">Enviar</button>
 				</div>
 			</div>

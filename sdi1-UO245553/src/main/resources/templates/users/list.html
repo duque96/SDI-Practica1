@@ -9,10 +9,12 @@
 		<p th:text=#{users.subtitle}></p>
 		<form class="navbar-form" action="/users/list">
 			<div class="form-group">
-				<input name="searchText" type="text" class="form-control" size="50"
-					placeholder="Buscar por email o nombre del usuario" />
+				<input name="searchText" id="search" type="text"
+					class="form-control" size="50"
+					th:placeholder="#{search.placeholder}" />
 			</div>
-			<button type="submit" class="btn btn-default">Buscar</button>
+			<button type="submit" id="searchSubmit" class="btn btn-default"
+				th:text="#{search.search}">Buscar</button>
 		</form>
 		<div class="table-responsive">
 			<table class="table table-hover">
@@ -29,9 +31,9 @@
 						<td th:text="${user.email}"></td>
 						<td th:switch="${user.status}">
 							<button th:case="'REQUEST'" class="btn btn-info"
-								disabled="disabled" th:text="Enviada"></button>
+								disabled="disabled" th:text="#{user.send}"></button>
 							<button th:case="'FRIEND'" class="btn btn-success"
-								disabled="disabled" th:text="Amigos"></button> <a
+								disabled="disabled" th:text="#{user.friend}"></button> <a
 							th:case="*" th:href="${'/addFriend/' + user.id}"
 							th:text="#{users.addFriend}" class="btn btn-primary" style=""></a>
 						</td>

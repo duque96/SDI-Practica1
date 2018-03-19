@@ -19,7 +19,7 @@
 					<tr th:each="user : ${requestList}">
 						<td th:text="${user.name}"></td>
 						<td><a th:href="${'/friendRequests/accept/' + user.id}"
-							th:text="#{users.addFriend}" class="btn btn-primary" style=""></a></td>
+							th:text="#{friendRequest.acceptFriend}" class="btn btn-primary" style=""></a></td>
 					</tr>
 				</tbody>
 			</table>

@@ -23,6 +23,7 @@ public class SecurityService {
 	public String findLoggedInEmail() {
 		Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
 		if (userDetails instanceof UserDetails) {
+			logger.debug("Info: Email del usuario identificacido: " + ((UserDetails) userDetails).getUsername());
 			return ((UserDetails) userDetails).getUsername();
 		}
 
@@ -40,5 +41,7 @@ public class SecurityService {
 			SecurityContextHolder.getContext().setAuthentication(aToken);
 			logger.debug(String.format("Auto login %s successfully!", email));
 		}
+
+		logger.debug("Error: se ha producido un error al autoidentificarse");
 	}
 }

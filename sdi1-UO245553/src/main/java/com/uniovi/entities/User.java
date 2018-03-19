@@ -3,7 +3,6 @@ package com.uniovi.entities;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,10 +23,10 @@ public class User {
 
 	@Transient // No se almacena en la base de datos
 	private String passwordConfirm;
-	
+
 	@Transient
 	private String status;
-	
+
 	@OneToMany
 	private Set<User> friendRequests = new HashSet<User>();
 
@@ -74,20 +73,20 @@ public class User {
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+
 	public String getStatus() {
 		return status;
 	}
-	
-	public Set<User> _getFriendsRequest(){
+
+	public Set<User> _getFriendsRequest() {
 		return friendRequests;
 	}
-	
-	public Set<User> getFriendsRequest(){
+
+	public Set<User> getFriendsRequest() {
 		return new HashSet<User>(friendRequests);
 	}
 
