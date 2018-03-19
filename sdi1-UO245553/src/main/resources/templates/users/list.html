@@ -27,8 +27,14 @@
 					<tr th:each="user : ${usersList}">
 						<td th:text="${user.name}"></td>
 						<td th:text="${user.email}"></td>
-						<td><a th:href="${'/addFriend/' + user.id}"
-							th:text="#{users.addFriend}"></a></td>
+						<td th:switch="${user.status}">
+							<button th:case="'REQUEST'" class="btn btn-info"
+								disabled="disabled" th:text="Enviada"></button>
+							<button th:case="'FRIEND'" class="btn btn-success"
+								disabled="disabled" th:text="Amigos"></button> <a
+							th:case="*" th:href="${'/addFriend/' + user.id}"
+							th:text="#{users.addFriend}" class="btn btn-primary" style=""></a>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -38,3 +44,6 @@
 	<footer th:replace="fragments/footer"></footer>
 </body>
 </html>
+
+<!-- <a th:case="'REQUEST'" th:href="${'/addFriend/' + user.id}"
+							th:text="#{users.addFriend}" class="btn btn-primary" style=""></a> -->
