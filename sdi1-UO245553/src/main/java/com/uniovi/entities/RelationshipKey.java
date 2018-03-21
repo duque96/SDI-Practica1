@@ -2,19 +2,23 @@ package com.uniovi.entities;
 
 import java.io.Serializable;
 
-public class RelationshipKey implements Serializable{
+import javax.persistence.Embeddable;
+
+@Embeddable
+public class RelationshipKey implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	Long sender;
 	Long recipient;
-	
+
 	public RelationshipKey(Long sender, Long recipient) {
 		this.sender = sender;
 		this.recipient = recipient;
 	}
-	
-	public RelationshipKey() {}
-	
+
+	public RelationshipKey() {
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -23,7 +27,7 @@ public class RelationshipKey implements Serializable{
 		result = prime * result + ((sender == null) ? 0 : sender.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

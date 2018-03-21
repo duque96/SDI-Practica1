@@ -8,7 +8,8 @@
 		<h2 th:text="#{friendRequest.title}"></h2>
 		<p th:text=#{friendRequest.subtitle}></p>
 		<div class="table-responsive">
-			<table class="table table-hover">
+			<table class="table table-hover"
+				th:if="${not #lists.isEmpty(requestList)}">
 				<thead>
 					<tr>
 						<th th:text="#{friendRequest.list.name}">Nombre</th>
@@ -16,15 +17,23 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="user : ${requestList}">
-						<td th:text="${user.name}"></td>
-						<td><a th:href="${'/friendRequests/accept/' + user.id}"
-							th:text="#{friendRequest.acceptFriend}" class="btn btn-primary" style=""></a></td>
+					<tr th:each="r : ${requestList}">
+						<td th:text="${r.sender.name}"></td>
+						<td><a id="btnAccept"
+							th:href="${'/friendRequests/accept/' + r.sender.id}"
+							th:text="#{friendRequest.acceptFriend}" class="btn btn-primary"
+							style=""></a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<footer th:replace="fragments/pagination"></footer>
+
+		<div class="container" style="text-align: center">
+			<h3 th:text="#{friendRequest.emptyTitle}"></h3>
+		</div>
+
+		<footer th:if="${not #lists.isEmpty(requestList)}"
+			th:replace="fragments/pagination"></footer>
 	</div>
 	<footer th:replace="fragments/footer"></footer>
 </body>

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -27,8 +28,8 @@ public class User {
 	@Transient
 	private String status;
 
-	@OneToMany
-	private Set<User> friendRequests = new HashSet<User>();
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "sender")
+	private Set<Relationship> friendRequests = new HashSet<Relationship>();
 
 	public User() {
 	}
@@ -82,12 +83,12 @@ public class User {
 		return status;
 	}
 
-	public Set<User> _getFriendsRequest() {
+	public Set<Relationship> _getFriendsRequest() {
 		return friendRequests;
 	}
 
-	public Set<User> getFriendsRequest() {
-		return new HashSet<User>(friendRequests);
+	public Set<Relationship> getFriendsRequest() {
+		return new HashSet<Relationship>(friendRequests);
 	}
 
 	@Override

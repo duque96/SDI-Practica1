@@ -17,7 +17,8 @@
 				th:text="#{search.search}">Buscar</button>
 		</form>
 		<div class="table-responsive">
-			<table class="table table-hover">
+			<table class="table table-hover"
+				th:if="${not #lists.isEmpty(usersList)}" th:fragment="tableUsers">
 				<thead>
 					<tr>
 						<th th:text="#{users.list.name}">Nombre</th>
@@ -30,22 +31,21 @@
 						<td th:text="${user.name}"></td>
 						<td th:text="${user.email}"></td>
 						<td th:switch="${user.status}">
-							<button th:case="'REQUEST'" class="btn btn-info"
+							<button th:case="'REQUEST'" id="btnRequest" class="btn btn-info"
 								disabled="disabled" th:text="#{user.send}"></button>
 							<button th:case="'FRIEND'" class="btn btn-success"
 								disabled="disabled" th:text="#{user.friend}"></button> <a
-							th:case="*" th:href="${'/addFriend/' + user.id}"
-							th:text="#{users.addFriend}" class="btn btn-primary" style=""></a>
+							th:case="*" id="btnAddFriend"
+							th:href="${'/addFriend/' + user.id}" th:text="#{users.addFriend}"
+							class="btn btn-primary" style=""></a>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<footer th:replace="fragments/pagination"></footer>
+		<footer th:if="${not #lists.isEmpty(usersList)}"
+			th:replace="fragments/pagination"></footer>
 	</div>
 	<footer th:replace="fragments/footer"></footer>
 </body>
 </html>
-
-<!-- <a th:case="'REQUEST'" th:href="${'/addFriend/' + user.id}"
-							th:text="#{users.addFriend}" class="btn btn-primary" style=""></a> -->

@@ -73,7 +73,8 @@ public class UserService {
 		Page<User> list = userRepository.getUsersWithoutId(id, pageable);
 
 		for (User user : list.getContent()) {
-			user.setStatus(relationshipRepository.getStatus(new RelationshipKey(id, user.getId())));
+			String aux = relationshipRepository.getStatus(new RelationshipKey(id, user.getId()));
+			user.setStatus(aux);
 		}
 
 		logger.debug("Info: Se obtiene una lista de usuarios sin el usuario activo que tiene el id " + id);

@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -11,10 +12,12 @@ import javax.persistence.ManyToOne;
 public class Relationship {
 	@Id
 	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
 	private User sender;
 
 	@Id
 	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
 	private User recipient;
 
 	@Column

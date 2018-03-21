@@ -15,10 +15,11 @@
 		</div>
 
 		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav" id="ul-users-menu" sec:authorize="isAuthenticated()">
-				<li id="users-menu" class="dropdown"><a id="users" class="dropdown-toggle"
-					data-toggle="dropdown" href="#" th:text="#{nav.users}"><span
-						class="caret"></span> </a>
+			<ul class="nav navbar-nav" id="ul-users-menu"
+				sec:authorize="isAuthenticated()">
+				<li id="users-menu" class="dropdown"><a id="users"
+					class="dropdown-toggle" data-toggle="dropdown" href="#"
+					th:text="#{nav.users}"><span class="caret"></span> </a>
 					<ul id="dropdownUsers" class="dropdown-menu">
 						<li><a id="usersList" href="/users/list"
 							th:text="#{nav.users.list}"></a></li>
@@ -50,17 +51,20 @@
 					href="/login" th:text="#{nav.login.message}" class="login"> <span
 						class="glyphicon glyphicon-log-in"></span> Identifícate
 				</a></li>
-				<li sec:authorize="isAuthenticated()"><a href="/friendsList"
-					th:text="#{nav.friend.list.message}"> <span
-						class="glyphicon glyphicon-log-out"></span> Amigos
+				<li sec:authorize="isAuthenticated()"><a id="listarAmigos"
+					href="/friendsList" th:text="#{nav.friend.list.message}"
+					class="listarAmigos"> <span class="glyphicon glyphicon-log-out"></span>
+						Amigos
 				</a></li>
-				<li sec:authorize="isAuthenticated()"><a href="/friendRequests"
-					th:text="#{nav.friend.request.message}"> <span
-						class="glyphicon glyphicon-log-out"></span> Solicitud de amistad
+				<li sec:authorize="isAuthenticated()"><a
+					id="solicitudesAmistad" href="/friendRequests"
+					th:text="#{nav.friend.request.message}" class="solicitudesAmistad">
+						<span class="glyphicon glyphicon-log-out"></span> Solicitud de
+						amistad
 				</a></li>
-				<li sec:authorize="isAuthenticated()"><a href="/logout"
-					th:text="#{nav.logout.message}"> <span
-						class="glyphicon glyphicon-log-out"></span> Desconectar
+				<li sec:authorize="isAuthenticated()"><a id="logout"
+					href="/logout" th:text="#{nav.logout.message}" class="logout">
+						<span class="glyphicon glyphicon-log-out"></span> Desconectar
 				</a></li>
 			</ul>
 		</div>

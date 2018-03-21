@@ -47,7 +47,7 @@ public class RelationshipController {
 		String email = auth.getName();
 		User activeUser = userService.getUserByEmail(email);
 
-		Page<User> requests = new PageImpl<User>(new LinkedList<User>());
+		Page<Relationship> requests = new PageImpl<Relationship>(new LinkedList<Relationship>());
 
 		requests = relationshipService.getRequests(pageable, activeUser);
 

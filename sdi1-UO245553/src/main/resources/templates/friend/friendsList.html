@@ -8,7 +8,8 @@
 		<h2 th:text="#{friendsList.title}"></h2>
 		<p th:text=#{friendsList.subtitle}></p>
 		<div class="table-responsive">
-			<table class="table table-hover">
+			<table class="table table-hover"
+				th:if="${not #lists.isEmpty(friendsList)}">
 				<thead>
 					<tr>
 						<th th:text="#{friends.list.name}">Nombre</th>
@@ -23,7 +24,13 @@
 				</tbody>
 			</table>
 		</div>
-		<footer th:replace="fragments/pagination"></footer>
+
+		<div class="container" style="text-align: center">
+			<h3 th:text="#{friendList.emptyTitle}"></h3>
+		</div>
+
+		<footer th:if="${not #lists.isEmpty(friendsList)}"
+			th:replace="fragments/pagination"></footer>
 	</div>
 	<footer th:replace="fragments/footer"></footer>
 </body>

@@ -1,7 +1,6 @@
 package com.uniovi.services;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,13 +29,11 @@ public class RelationshipService {
 				+ relationShip.getRecipient());
 	}
 
-	public Page<User> getRequests(Pageable pageable, User user) {
-		List<User> aux = new ArrayList<User>(user.getFriendsRequest());
+	public Page<Relationship> getRequests(Pageable pageable, User user) {
 
-		int start = pageable.getOffset();
-		int end = (start + pageable.getPageSize()) > aux.size() ? aux.size() : (start + pageable.getPageSize());
+		Page<Relationship> requests = new PageImpl<Relationship>(new LinkedList<Relationship>());
 
-		Page<User> requests = new PageImpl<User>(aux.subList(start, end), pageable, aux.size());
+		requests = relationshipRepository.getRequests(pageable, user.getId());
 
 		logger.debug("Info: Se han obtenido todas las peticiones de amistada para el usuario " + user.getId());
 
@@ -44,8 +41,6 @@ public class RelationshipService {
 	}
 
 	public void acceptFriend(User activeUser, User user) {
-		activeUser._getFriendsRequest().remove(user);
-
 		Relationship r = relationshipRepository.findOne(new RelationshipKey(user.getId(), activeUser.getId()));
 		r.setStatus("FRIEND");
 
@@ -58,7 +53,6 @@ public class RelationshipService {
 			r2.setStatus("FRIEND");
 			relationshipRepository.save(r2);
 		} else {
-			user._getFriendsRequest().remove(activeUser);
 			r2.setStatus("FRIEND");
 		}
 
