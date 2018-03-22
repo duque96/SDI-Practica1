@@ -17,8 +17,7 @@
 				th:text="#{search.search}">Buscar</button>
 		</form>
 		<div class="table-responsive">
-			<table class="table table-hover"
-				th:if="${not #lists.isEmpty(usersList)}" th:fragment="tableUsers">
+			<table class="table table-hover" th:fragment="tableUsers">
 				<thead>
 					<tr>
 						<th th:text="#{users.list.name}">Nombre</th>
@@ -43,8 +42,7 @@
 				</tbody>
 			</table>
 		</div>
-		<footer th:if="${not #lists.isEmpty(usersList)}"
-			th:replace="fragments/pagination"></footer>
+		<footer th:replace="fragments/pagination"></footer>
 	</div>
 	<footer th:replace="fragments/footer"></footer>
 </body>

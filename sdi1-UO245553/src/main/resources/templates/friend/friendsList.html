@@ -25,7 +25,9 @@
 			</table>
 		</div>
 
-		<div class="container" style="text-align: center">
+		<div th:if="${#lists.isEmpty(friendsList)}" class="
+			container"
+			style="text-align: center">
 			<h3 th:text="#{friendList.emptyTitle}"></h3>
 		</div>
 

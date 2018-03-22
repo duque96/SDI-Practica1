@@ -41,8 +41,7 @@ public class RelationshipService {
 	}
 
 	public void acceptFriend(User activeUser, User user) {
-		Relationship r = relationshipRepository.findOne(new RelationshipKey(user.getId(), activeUser.getId()));
-		r.setStatus("FRIEND");
+		relationshipRepository.updateStatus(new RelationshipKey(user.getId(), activeUser.getId()));
 
 		Relationship r2 = relationshipRepository.findOne(new RelationshipKey(activeUser.getId(), user.getId()));
 
@@ -53,7 +52,7 @@ public class RelationshipService {
 			r2.setStatus("FRIEND");
 			relationshipRepository.save(r2);
 		} else {
-			r2.setStatus("FRIEND");
+			relationshipRepository.updateStatus(new RelationshipKey(activeUser.getId(), user.getId()));
 		}
 
 		logger.debug("Info: Se ha aceptado la petición de amistad entre " + activeUser.getId() + " y " + user.getId());

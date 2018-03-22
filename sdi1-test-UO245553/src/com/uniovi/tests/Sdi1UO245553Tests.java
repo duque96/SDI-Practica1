@@ -31,7 +31,7 @@ public class Sdi1UO245553Tests {
 
 	// En Windows (Debe ser la versión 46.0 y desactivar las actualizacioens
 	// automáticas)):
-	static String PathFirefox = "C:\\Users\\danyd\\Documents\\Firefox46.win\\FirefoxPortable.exe";
+	static String PathFirefox = "C:\\Users\\danyd\\Downloads\\Firefox46.0.win\\Firefox46.win\\FirefoxPortable.exe";
 
 	// En MACOSX (Debe ser la versión 46.0 y desactivar las actualizaciones
 	// automáticas):

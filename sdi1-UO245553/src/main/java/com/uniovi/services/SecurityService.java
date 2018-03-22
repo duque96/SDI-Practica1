@@ -23,7 +23,7 @@ public class SecurityService {
 	public String findLoggedInEmail() {
 		Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
 		if (userDetails instanceof UserDetails) {
-			logger.debug("Info: Email del usuario identificacido: " + ((UserDetails) userDetails).getUsername());
+			logger.debug("Info: Email del usuario identificado: " + ((UserDetails) userDetails).getUsername());
 			return ((UserDetails) userDetails).getUsername();
 		}
 
