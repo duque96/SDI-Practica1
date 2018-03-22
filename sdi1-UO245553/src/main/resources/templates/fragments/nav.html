@@ -26,6 +26,41 @@
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+				<li sec:authorize="!isAuthenticated()"><a id="signUp"
+					href="/signup" th:text="#{nav.signup.message}" class="signUp">
+						<span class="glyphicon glyphicon-user"></span> Registrate
+				</a></li>
+				<li sec:authorize="!isAuthenticated()"><a id="login"
+					href="/login" th:text="#{nav.login.message}" class="login"> <span
+						class="glyphicon glyphicon-log-in"></span> Identifícate
+				</a></li>
+				<li sec:authorize="isAuthenticated()" id="publications-menu"
+					class="dropdown"><a id="publications" class="dropdown-toggle"
+					data-toggle="dropdown" href="#"
+					th:text="#{nav.publications.message}"><span class="caret"></span>
+				</a>
+					<ul id="dropdownPublications" class="dropdown-menu">
+						<li><a id="createPublication" href="/publications/create"
+							th:text="#{nav.publications.create}"></a></li>
+						<li><a id="createPublication"
+							href="/publications/myPublications"
+							th:text="#{nav.publications.myPublications}"></a></li>
+					</ul>
+				<li sec:authorize="isAuthenticated()"><a id="listarAmigos"
+					href="/friendsList" th:text="#{nav.friend.list.message}"
+					class="listarAmigos"> <span class="glyphicon glyphicon-log-out"></span>
+						Amigos
+				</a></li>
+				<li sec:authorize="isAuthenticated()"><a
+					id="solicitudesAmistad" href="/friendRequests"
+					th:text="#{nav.friend.request.message}" class="solicitudesAmistad">
+						<span class="glyphicon glyphicon-log-out"></span> Solicitud de
+						amistad
+				</a></li>
+				<li sec:authorize="isAuthenticated()"><a id="logout"
+					href="/logout" th:text="#{nav.logout.message}" class="logout">
+						<span class="glyphicon glyphicon-log-out"></span> Desconectar
+				</a></li>
 				<li class="dropdown"><a id="btnLanguage" href="#"
 					class="dropdown-toggle" data-toggle="dropdown" role="button"
 					aria-haspopup="true" aria-expanded="false"> <span
@@ -43,29 +78,6 @@
 								th:text="#{nav.language.es}">Español</span>
 						</a></li>
 					</ul></li>
-				<li sec:authorize="!isAuthenticated()"><a id="signUp"
-					href="/signup" th:text="#{nav.signup.message}" class="signUp">
-						<span class="glyphicon glyphicon-user"></span> Registrate
-				</a></li>
-				<li sec:authorize="!isAuthenticated()"><a id="login"
-					href="/login" th:text="#{nav.login.message}" class="login"> <span
-						class="glyphicon glyphicon-log-in"></span> Identifícate
-				</a></li>
-				<li sec:authorize="isAuthenticated()"><a id="listarAmigos"
-					href="/friendsList" th:text="#{nav.friend.list.message}"
-					class="listarAmigos"> <span class="glyphicon glyphicon-log-out"></span>
-						Amigos
-				</a></li>
-				<li sec:authorize="isAuthenticated()"><a
-					id="solicitudesAmistad" href="/friendRequests"
-					th:text="#{nav.friend.request.message}" class="solicitudesAmistad">
-						<span class="glyphicon glyphicon-log-out"></span> Solicitud de
-						amistad
-				</a></li>
-				<li sec:authorize="isAuthenticated()"><a id="logout"
-					href="/logout" th:text="#{nav.logout.message}" class="logout">
-						<span class="glyphicon glyphicon-log-out"></span> Desconectar
-				</a></li>
 			</ul>
 		</div>
 	</div>

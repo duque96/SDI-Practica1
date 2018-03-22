@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/head" />
+<body>
+	<nav th:replace="fragments/nav" />
+
+	<div class="container">
+		<h2 th:text="#{myPublications.title}"></h2>
+		<div class="panel-group"
+			th:if="${not #lists.isEmpty(publicationsList)}">
+			<div class="panel panel-primary" th:each="p : ${publicationsList}">
+				<div class="panel-heading" th:text="${p.title}"></div>
+				<div class="panel-body" th:text="${p.creationDate}"></div>
+			</div>
+		</div>
+	</div>
+
+	<div th:if="${#lists.isEmpty(publicationsList)}" class="
+			container"
+		style="text-align: center">
+		<h3 th:text="#{myPublications.emptyTitle}"></h3>
+	</div>
+
+	<footer th:replace="fragments/footer"></footer>
+</body>
+</head>
+</html>

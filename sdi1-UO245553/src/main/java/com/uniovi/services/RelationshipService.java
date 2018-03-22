@@ -23,10 +23,9 @@ public class RelationshipService {
 	@Autowired
 	private RelationshipRepository relationshipRepository;
 
-	public void addRelationship(Relationship relationShip) {
-		relationshipRepository.save(relationShip);
-		logger.debug("Info: relación almacenada en la base de datos entre " + relationShip.getSender() + " y "
-				+ relationShip.getRecipient());
+	public void addRelationship(User activeUser, User recipient) {
+		relationshipRepository.save(new Relationship(activeUser, recipient, "REQUEST"));
+		logger.debug("Info: relación almacenada en la base de datos entre " + activeUser + " y " + recipient);
 	}
 
 	public Page<Relationship> getRequests(Pageable pageable, User user) {

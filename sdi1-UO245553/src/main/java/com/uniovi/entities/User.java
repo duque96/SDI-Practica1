@@ -31,6 +31,9 @@ public class User {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "sender")
 	private Set<Relationship> friendRequests = new HashSet<Relationship>();
 
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "creator")
+	private Set<Publication> publications = new HashSet<Publication>();
+
 	public User() {
 	}
 
@@ -89,6 +92,14 @@ public class User {
 
 	public Set<Relationship> getFriendsRequest() {
 		return new HashSet<Relationship>(friendRequests);
+	}
+
+	public Set<Publication> _getPublications() {
+		return publications;
+	}
+
+	public Set<Publication> getPublications() {
+		return new HashSet<Publication>(publications);
 	}
 
 	@Override

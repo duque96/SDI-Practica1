@@ -14,12 +14,17 @@
 					<tr>
 						<th th:text="#{friends.list.name}">Nombre</th>
 						<th th:text="#{friends.list.email}">Email</th>
+						<th class="col-md-2"></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="user : ${friendsList}">
 						<td th:text="${user.name}"></td>
 						<td th:text="${user.email}"></td>
+						<td><a id="btnAccept"
+							th:href="${'/publications/friendPublications/' + user.id}"
+							th:text="#{friendPublications.show}" class="btn btn-primary"
+							style=""></a></td>
 					</tr>
 				</tbody>
 			</table>

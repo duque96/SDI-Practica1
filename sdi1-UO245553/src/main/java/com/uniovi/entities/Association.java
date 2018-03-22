@@ -9,14 +9,14 @@ public class Association {
 
 			recipient._getFriendsRequest().add(relationship);
 		}
-
-		// public static void unlink(Cargo cargo) {
-		// cargo.getMedioPago()._getCargos().remove(cargo);
-		// cargo.getFactura()._getCargos().remove(cargo);
-		//
-		// cargo._setMedioPago(null);
-		// cargo._setFactura(null);
-		// }
 	}
 
+	public static class CreatePublication {
+
+		public static void link(User creator, Publication publication) {
+			publication.setCreator(creator);
+
+			creator._getPublications().add(publication);
+		}
+	}
 }

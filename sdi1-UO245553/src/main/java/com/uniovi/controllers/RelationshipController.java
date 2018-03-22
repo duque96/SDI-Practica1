@@ -32,11 +32,9 @@ public class RelationshipController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String email = auth.getName();
 		User activeUser = userService.getUserByEmail(email);
-
-		User recipientUser = userService.getUser(id);
-
-		relationshipService.addRelationship(new Relationship(activeUser, recipientUser, "REQUEST"));
-		userService.updateUser(recipientUser);
+		User recipient = userService.getUser(id);
+		relationshipService.addRelationship(activeUser, recipient);
+		userService.updateUser(recipient);
 
 		return "redirect:/users/list";
 	}
