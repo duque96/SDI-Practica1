@@ -30,4 +30,14 @@ public interface RelationshipRepository extends CrudRepository<Relationship, Rel
 	@Query("UPDATE Relationship SET status='FRIEND' WHERE id=?1")
 	public void updateStatus(RelationshipKey relationshipKey);
 
+	@Transactional
+	@Modifying
+	@Query("DELETE FROM Relationship WHERE (sender.id=?1)")
+	public void deleteRelationshipSender(Long id);
+
+	@Transactional
+	@Modifying
+	@Query("DELETE FROM Relationship WHERE (recipient.id=?1)")
+	public void deleteRelationshipRecipient(Long id);
+
 }

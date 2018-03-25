@@ -17,9 +17,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.uniovi.tests.pageobjects.PO_CreatePublicationView;
 import com.uniovi.tests.pageobjects.PO_FriendRequestView;
 import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_LoginView;
+import com.uniovi.tests.pageobjects.PO_NavView;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
 import com.uniovi.tests.pageobjects.PO_UserListView;
 import com.uniovi.tests.pageobjects.PO_View;
@@ -341,9 +343,196 @@ public class Sdi1UO245553Tests {
 
 		// Comprobamos que hay un usuario
 		elementos = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr", PO_View.getTimeout());
-		assertTrue(elementos.size() == 2);
+		assertTrue(elementos.size() == 4);
 
 		PO_View.checkElement(driver, "text", "Raul");
 	}
 
+	@Test
+	public void PubVal() {
+		PO_HomeView.clickOption(driver, "login", "class", "login");
+
+		// Cargamos un usuario en sesión
+		PO_LoginView.fillForm(driver, "daniel@gmail.com", "123456");
+
+		// Cargamos la vista de crear publicación
+		PO_NavView.goToCreatePublication(driver);
+
+		// Introducimos datos
+		PO_CreatePublicationView.fillForm(driver, "Titulo1", "publicación1");
+
+		// Comprobamos que se creo la publicación
+		PO_View.checkElement(driver, "text", "Titulo1");
+	}
+
+	@Test
+	public void LisPubVal() {
+		PO_HomeView.clickOption(driver, "login", "class", "login");
+
+		// Cargamos un usuario en sesión
+		PO_LoginView.fillForm(driver, "daniel@gmail.com", "123456");
+
+		// Cargamos la vista de crear publicación
+		PO_NavView.goToCreatePublication(driver);
+
+		// Introducimos datos
+		PO_CreatePublicationView.fillForm(driver, "Titulo1", "publicación1");
+
+		// Comprobamos que se creo la publicación
+		PO_View.checkElement(driver, "text", "Titulo1");
+
+		// Vamos a otra vista
+		PO_NavView.goToUsersList(driver);
+
+		// Obtenemos las publicaciones del usuario en sesión
+		PO_NavView.goToMyPublication(driver);
+
+		// Comprobamos que se creo la publicación
+		PO_View.checkElement(driver, "text", "Titulo1");
+	}
+
+	@Test
+	public void LisPubAmiVal() {
+		PO_HomeView.clickOption(driver, "login", "class", "login");
+
+		// Cargamos un usuario en sesión
+		PO_LoginView.fillForm(driver, "daniel@gmail.com", "123456");
+
+		// Enviamos una petición de amistad a un usuario
+		PO_UserListView.fillForm(driver, "Carla");
+		// Clicamos en el botón de Añadir Amigo
+		PO_UserListView.sendPetition(driver);
+
+		// Cargamos la vista de crear publicación
+		PO_NavView.goToCreatePublication(driver);
+
+		// Introducimos datos
+		PO_CreatePublicationView.fillForm(driver, "Titulo1", "publicación3");
+
+		// Cerramos sesion con el usuario actual
+		PO_HomeView.clickOption(driver, "logout");
+
+		// Iniciamos sesion con el usuario al que le enviamos la petición
+		PO_LoginView.fillForm(driver, "carla@gmail.com", "123456");
+
+		// Clicamos en la opción de listar solicitudes de amistad
+		PO_HomeView.clickOption(driver, "friendRequests", "class", "solicitudesAmistad");
+
+		// Clicamos en el botón aceptar
+		PO_FriendRequestView.clickBotonAceptar(driver);
+
+		// Listamos las publicaciones del amigo
+		PO_HomeView.clickOption(driver, "friendsList", "class", "listarAmigos");
+
+		driver.navigate().to(URL + "/publications/friendPublications/1");
+
+		PO_View.checkElement(driver, "text", "Titulo1");
+
+	}
+
+	@Test
+	public void LisPubAmiInVal() {
+		PO_HomeView.clickOption(driver, "login", "class", "login");
+
+		// Cargamos un usuario en sesión
+		PO_LoginView.fillForm(driver, "daniel@gmail.com", "123456");
+
+		// Enviamos una petición de amistad a un usuario
+		PO_UserListView.fillForm(driver, "Miguel");
+		// Clicamos en el botón de Añadir Amigo
+		PO_UserListView.sendPetition(driver);
+
+		// Cargamos la vista de crear publicación
+		PO_NavView.goToCreatePublication(driver);
+
+		// Introducimos datos
+		PO_CreatePublicationView.fillForm(driver, "Titulo1", "publicación3");
+
+		// Cerramos sesion con el usuario actual
+		PO_HomeView.clickOption(driver, "logout");
+
+		// Iniciamos sesion con el usuario al que le enviamos la petición
+		PO_LoginView.fillForm(driver, "miguel@gmail.com", "123456");
+
+		// Clicamos en la opción de listar solicitudes de amistad
+		PO_HomeView.clickOption(driver, "friendRequests", "class", "solicitudesAmistad");
+
+		// Clicamos en el botón aceptar
+		PO_FriendRequestView.clickBotonAceptar(driver);
+
+		// Listamos las publicaciones del amigo
+		PO_HomeView.clickOption(driver, "friendsList", "class", "listarAmigos");
+
+		driver.navigate().to(URL + "/publications/friendPublications/3");
+
+		PO_View.checkElement(driver, "id", "indexImg");
+
+	}
+	
+	
+
+	@Test
+	public void AdInVal() {
+		driver.navigate().to(URL + "/admin/login");
+
+		// Cargamos un usuario en sesión
+		PO_LoginView.fillForm(driver, "admin@gmail.com", "123456");
+
+		// Comprobamos que se cargan todos los usuarios de la aplicación
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
+				PO_View.getTimeout());
+		assertTrue(elementos.size() == 9);
+	}
+
+	@Test
+	public void AdInInVal() {
+		driver.navigate().to(URL + "/admin/login");
+
+		// Cargamos un usuario en sesión
+		PO_LoginView.fillForm(driver, "daniel@gmail.com", "123456");
+
+		// Comprobamos que se muestra el error
+		PO_View.checkElement(driver, "text", "El usuario no tiene rol de admin");
+	}
+
+	@Test
+	public void AdLisUsrVal() {
+		driver.navigate().to(URL + "/admin/login");
+
+		// Cargamos un usuario en sesión
+		PO_LoginView.fillForm(driver, "admin@gmail.com", "123456");
+
+		// Comprobamos que se cargan todos los usuarios de la aplicación
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
+				PO_View.getTimeout());
+		assertTrue(elementos.size() == 9);
+	}
+
+	@Test
+	public void AdBorUsrVal() {
+		driver.navigate().to(URL + "/admin/login");
+
+		// Cargamos un usuario en sesión
+		PO_LoginView.fillForm(driver, "admin@gmail.com", "123456");
+
+		// Borramos el último usuario
+		driver.navigate().to(URL + "/admin/delete/10");
+
+		// Comprobamos que ya no está el usuario en la aplicación
+		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, "Lara", 2);
+	}
+
+	@Test
+	public void AdBorUsrInVal() {
+		PO_HomeView.clickOption(driver, "login", "class", "login");
+
+		// Cargamos un usuario en sesión
+		PO_LoginView.fillForm(driver, "daniel@gmail.com", "123456");
+
+		// Borramos el último usuario
+		driver.navigate().to(URL + "/admin/delete/10");
+
+		// Comprobamos que se carga la página principal de la aplicación
+		PO_View.checkElement(driver, "id", "indexImg");
+	}
 }

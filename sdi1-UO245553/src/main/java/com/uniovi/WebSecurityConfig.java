@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests().antMatchers("/css/**", "/img/**", "/script/**", "/").permitAll()
-				.antMatchers("/signup/**", "/login/**").not().authenticated()
+				.antMatchers("/signup/**", "/login/**", "/admin/login/**").not().authenticated()
 				.antMatchers("users/**", "users/list/**", "friendRequests/**", "friendsList/**", "publications/**")
 				.authenticated().anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll()
 				.defaultSuccessUrl("/users/list").and().logout().permitAll();

@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class PO_LoginView extends PO_View {
+public class PO_LoginView extends PO_NavView {
 	static public void fillForm(WebDriver driver, String emailp, String passwordp) {
 		WebElement name = driver.findElement(By.id("loginEmail"));
 		name.click();

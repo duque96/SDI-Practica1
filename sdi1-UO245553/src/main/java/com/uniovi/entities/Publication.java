@@ -25,6 +25,9 @@ public class Publication {
 	@Column
 	private Date creationDate;
 
+	@Column
+	private String image;
+
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private User creator;
@@ -32,9 +35,10 @@ public class Publication {
 	public Publication() {
 	}
 
-	public Publication(String title, String text, User user) {
+	public Publication(String title, String text, String image, User user) {
 		this.title = title;
 		this.text = text;
+		this.image = image;
 		this.creationDate = new Date(new java.util.Date().getTime());
 		Association.CreatePublication.link(user, this);
 	}
@@ -69,6 +73,14 @@ public class Publication {
 
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public Long getId() {

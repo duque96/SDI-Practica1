@@ -21,6 +21,7 @@ public class User {
 	@Column(unique = true)
 	private String email;
 	private String password;
+	private String role;
 
 	@Transient // No se almacena en la base de datos
 	private String passwordConfirm;
@@ -84,6 +85,14 @@ public class User {
 
 	public String getStatus() {
 		return status;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public Set<Relationship> _getFriendsRequest() {

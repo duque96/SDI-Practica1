@@ -80,4 +80,26 @@ public class PO_NavView extends PO_View {
 		elementos = SeleniumUtils.EsperaCargaPagina(driver, "id", "usersList", getTimeout());
 		elementos.get(0).click();
 	}
+
+	public static void goToCreatePublication(WebDriver driver) {
+		// clickamos la opción Publicaciones.
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "id", "publications", getTimeout());
+		elementos.get(0).click();
+		// Esperamos a que aparezca el menú de opciones.
+		elementos = SeleniumUtils.EsperaCargaPagina(driver, "id", "dropdownPublications", getTimeout());
+		// CLickamos la opción listar usuarios
+		elementos = SeleniumUtils.EsperaCargaPagina(driver, "id", "createPublication", getTimeout());
+		elementos.get(0).click();
+	}
+
+	public static void goToMyPublication(WebDriver driver) {
+		// clickamos la opción Publicaciones.
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "id", "publications", getTimeout());
+		elementos.get(0).click();
+		// Esperamos a que aparezca el menú de opciones.
+		elementos = SeleniumUtils.EsperaCargaPagina(driver, "id", "dropdownPublications", getTimeout());
+		// CLickamos la opción listar usuarios
+		elementos = SeleniumUtils.EsperaCargaPagina(driver, "id", "myPublications", getTimeout());
+		elementos.get(0).click();
+	}
 }

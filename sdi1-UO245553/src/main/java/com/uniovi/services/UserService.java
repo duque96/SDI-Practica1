@@ -50,6 +50,9 @@ public class UserService {
 
 	public void addUser(User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		if (user.getRole() == null) {
+			user.setRole("ROLE_USER");
+		}
 		userRepository.save(user);
 		logger.debug("Info: Se almacena en la base de datos el usuario con id " + user.getId());
 	}
@@ -93,5 +96,9 @@ public class UserService {
 				+ "email con el siguiente texto " + searchText);
 
 		return list;
+	}
+
+	public List<User> getUsersWithoutId(Long id) {
+		return userRepository.getUsersWithoutId(id);
 	}
 }

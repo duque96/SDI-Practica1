@@ -14,7 +14,7 @@ public class PO_UserListView extends PO_NavView {
 		By boton = By.id("searchSubmit");
 		driver.findElement(boton).click();
 	}
-	
+
 	static public void sendPetition(WebDriver driver) {
 		// Pulsar el boton de Alta.
 		By boton = By.id("btnAddFriend");

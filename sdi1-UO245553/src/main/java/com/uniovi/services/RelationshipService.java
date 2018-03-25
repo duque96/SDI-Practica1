@@ -61,4 +61,9 @@ public class RelationshipService {
 		logger.debug("Info: Se ha obtenido la lista de amigos para el usuario " + id);
 		return relationshipRepository.getFriends(pageable, id);
 	}
+
+	public boolean checkIfFriend(Long activeUser, Long id) {
+		return relationshipRepository.exists(new RelationshipKey(activeUser, id));
+
+	}
 }
